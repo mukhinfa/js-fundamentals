@@ -1,20 +1,24 @@
 "use strict";
-function getMathResult(base, count) {
-    let result = 0;
-    let resultStr = '';
-    if (count <=0 || typeof(count) != "number"){
-        return base;
-    } else {
-    for (let i = 1; i <= count; i++) {
-        result += base;
-        resultStr+= result;
-        if (i < count) {
-            resultStr+= "---";
-        }
-    }
-    return resultStr;
-}
-}
-console.log(getMathResult(10,"6"));
 
-console.log(typeof(4566));
+function fib(num) {
+    let a = 0,
+        b = 1;
+    let fib = "";
+    if (typeof (num) !== 'number' || num < 1|| (num - parseInt(num) !== 0)) {
+        return fib;
+    } else {
+        for (let i = 1; i <= num; i++) {
+            fib += a;
+            if (i == num) {
+                return fib;
+            } else {
+                fib += " ";
+            }
+            a = a + b;
+            b = a - b;
+        }
+
+    }
+}
+console.log("__START__");
+console.log(`|${fib(4.4)}|`);
