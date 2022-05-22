@@ -1,38 +1,29 @@
 "use strict";
 
-const someString = 'This is some strange string';
-const s = 45366;
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam', 'Zlatan'];
 
-function reverse(str) {
-    let arr = [];
-    console.log(typeof (someString));
+function sortStudentsByGroups(arr) {
+    arr.sort();
 
-    if (typeof (str) !== 'string') {
-        return "Ошибка!";
+    let outSideAmount = arr.length % 3;
+    let outSideList = [];
+
+    if (outSideAmount === 0) {
+        outSideList.push('-');
     } else {
-        for (let i = str.length; i >= 0; i--) {
-            arr[(str.length - i)] = str[i];
+        for (let i = arr.length -1; i >= arr.length - outSideAmount; i--) {
+            outSideList.push(arr[i]);
         }
-        return arr.join('');
     }
+
+    let finalArr = [];
+
+    for (let i = 0; i < arr.length - outSideAmount; i += 3) {
+        finalArr.push([arr[i], arr[i + 1], arr[i + 2]]);
+    }
+    outSideList.sort();
+    finalArr.push(`Оставшиеся студенты: ${outSideList.join(', ')}`);
+    return finalArr;
+
 }
-console.log(reverse(someString));
-console.log('!!!! ', reverse(s));
-
-
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
-
-function availableCurr(arr, missingCurr) {
-    let str = '';
-    arr.length === 0 ? str = 'Нет доступных валют' : str = 'Доступные валюты:\n';
-
-    arr.forEach(function (curr, i) {
-        if (curr !== missingCurr) {
-            str += `${curr}\n`;
-        }
-    });
-    return str;
-}
-
-availableCurr([...baseCurrencies, ...additionalCurrencies], 'CNY')
+console.log(sortStudentsByGroups(students));
